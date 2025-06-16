@@ -68,6 +68,7 @@
         .admin-container {
             display: flex;
             min-height: 100vh;
+            position: relative;
         }
 
         /* Sidebar Styles */
@@ -78,10 +79,14 @@
             color: white;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             z-index: 100;
+            transform: translateX(0);
         }
 
         .sidebar-header {
@@ -206,7 +211,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            margin-left: var(--sidebar-width);
+            transition: margin-left 0.3s ease;
+            width: calc(100% - var(--sidebar-width));
+        }
+        
+        .main-content.expanded {
+            margin-left: 0;
+            width: 100%;
         }
 
         /* Top Bar Styles */
@@ -219,6 +231,8 @@
             padding: 0 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 90;
+            position: sticky;
+            top: 0;
         }
 
         .top-bar-left {
@@ -233,6 +247,7 @@
             color: var(--text-color);
             cursor: pointer;
             margin-right: 20px;
+            padding: 5px;
         }
 
         .top-bar-right {
@@ -1221,10 +1236,11 @@
        $(document).ready(function() {
             // Toggle sidebar on mobile
             $('.toggle-sidebar').click(function() {
-                $('.sidebar').toggleClass('active');
+                $('.sidebar').toggleClass('collapsed');
+                $('.main-content').toggleClass('expanded');
             });
 
-            // Toggle submenu - POPRAWIONE
+            // Toggle submenu
             $('.menu-item > a').click(function(e) {
                 if ($(this).siblings('.submenu').length) {
                     e.preventDefault();
@@ -1253,6 +1269,20 @@
             if (localStorage.getItem('theme') === 'dark') {
                 $('#theme-toggle').prop('checked', true).trigger('change');
             }
+            
+             // Automatyczne ukrywanie menu na małych ekranach
+            function handleResize() {
+                if ($(window).width() <= 992) {
+                    $('.sidebar').addClass('collapsed');
+                    $('.main-content').addClass('expanded');
+                } else {
+                    $('.sidebar').removeClass('collapsed');
+                    $('.main-content').removeClass('expanded');
+                }
+            }
+
+            // Wywołaj przy ładowaniu i zmianie rozmiaru
+            $(window).on('load resize', handleResize);
 
             // Simulate live data updates
             setInterval(function() {
