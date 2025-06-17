@@ -3,6 +3,12 @@
             $('#mobile-menu-toggle').click(function() {
                 $('#sidebar').toggleClass('active');
             });
+            
+            // Toggle sidebar on mobile
+            $('.toggle-sidebar').click(function() {
+                $('.sidebar').toggleClass('collapsed');
+                $('.main-content').toggleClass('expanded');
+            });
 
             // Ulepszone toggle submenu
             $('.menu-item > a').on('click', function(e) {
@@ -17,7 +23,7 @@
                     
                     // Przełącz obecne submenu
                     parent.toggleClass('open');
-                    submenu.slideToggle(200);
+                    //submenu.slideToggle(200);
                 }
             });
 
