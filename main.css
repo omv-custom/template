@@ -159,15 +159,14 @@
         }
 
         .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            display: none; /* Zamiast max-height: 0 */
             background-color: rgba(0, 0, 0, 0.2);
             padding-left: 0;
+            transition: all 0.3s ease-out;
         }
 
         .menu-item.open .submenu {
-            max-height: 500px;
+            display: block; /* Zamiast max-height: 500px */
         }
 
         .submenu-item {
