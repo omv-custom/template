@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Settings | System Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Sidebar (taki sam jak w index.html) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">System<span>Dash</span></h1>
+            </div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="menu-item">
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="fas fa-server"></i>
+                            <span>Services</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-circle-notch"></i>
+                                    <span>Running Services</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-stop-circle"></i>
+                                    <span>Stopped Services</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Service Settings</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-history"></i>
+                                    <span>Service Logs</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Service Metrics</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="fab fa-docker"></i>
+                            <span>Containers</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-play"></i>
+                                    <span>Running Containers</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-stop"></i>
+                                    <span>Stopped Containers</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-box"></i>
+                                    <span>Container Images</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="networks.html">
+                                    <i class="ti ti-network"></i>
+                                    <span>Networks</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Metrics</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>CPU Usage</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-memory"></i>
+                                    <span>Memory Usage</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-hdd"></i>
+                                    <span>Disk Usage</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-network-wired"></i>
+                                    <span>Network Traffic</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Pozostałe elementy menu takie jak w index.html -->
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                            <i class="fas fa-chevron-right arrow"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-user-cog"></i>
+                                    <span>User Settings</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item active">
+                                <a href="security.html">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Security</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">
+                                    <i class="fas fa-bell"></i>
+                                    <span>Notifications</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="appearance.html">
+                                    <i class="fas fa-palette"></i>
+                                    <span>Appearance</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar (taki sam jak w index.html) -->
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h3>Security Settings</h3>
+                </div>
+                <div class="top-bar-right">
+                    <!-- Elementy top-bar-right takie jak w index.html -->
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Authentication</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="security-settings-form">
+                            <div class="form-group">
+                                <label for="two-factor">Two-Factor Authentication</label>
+                                <div class="form-control">
+                                    <label class="switch">
+                                        <input type="checkbox" id="two-factor" name="two-factor">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <span class="switch-label">Enable 2FA</span>
+                                </div>
+                                <p class="form-help">Add an extra layer of security to your account</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password-change">Password Change</label>
+                                <div class="form-control">
+                                    <button class="btn-primary" type="button" id="change-password-btn">
+                                        <i class="fas fa-key"></i> Change Password
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session-timeout">Session Timeout</label>
+                                <div class="form-control">
+                                    <select id="session-timeout" name="session-timeout" class="form-select">
+                                        <option value="15">15 minutes</option>
+                                        <option value="30" selected>30 minutes</option>
+                                        <option value="60">1 hour</option>
+                                        <option value="120">2 hours</option>
+                                        <option value="0">Never (not recommended)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-primary">
+                            <i class="fas fa-save"></i> Save Authentication Settings
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Sessions</h3>
+                        <button class="action-btn" title="Refresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <table class="sessions-table">
+                            <thead>
+                                <tr>
+                                    <th>Device</th>
+                                    <th>IP Address</th>
+                                    <th>Location</th>
+                                    <th>Last Activity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-laptop"></i> Windows 10, Chrome
+                                    </td>
+                                    <td>192.168.1.105</td>
+                                    <td>Warsaw, Poland</td>
+                                    <td>2 minutes ago</td>
+                                    <td>
+                                        <button class="action-btn" title="Terminate">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-mobile-alt"></i> Android, Firefox
+                                    </td>
+                                    <td>89.64.32.156</td>
+                                    <td>Berlin, Germany</td>
+                                    <td>1 hour ago</td>
+                                    <td>
+                                        <button class="action-btn" title="Terminate">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-desktop"></i> macOS, Safari
+                                    </td>
+                                    <td>192.168.1.110</td>
+                                    <td>Warsaw, Poland</td>
+                                    <td>3 days ago</td>
+                                    <td>
+                                        <button class="action-btn" title="Terminate">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <button class="action-btn">
+                            <i class="fas fa-sign-out-alt"></i> Terminate All Other Sessions
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Security Log</h3>
+                        <button class="action-btn" title="Refresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="security-log">
+                            <div class="log-entry">
+                                <div class="log-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="log-content">
+                                    <div class="log-message">Successful login from 192.168.1.105 (Windows 10, Chrome)</div>
+                                    <div class="log-time">2 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="log-entry warning">
+                                <div class="log-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="log-content">
+                                    <div class="log-message">Failed login attempt for user 'admin' from 89.64.32.156</div>
+                                    <div class="log-time">1 hour ago</div>
+                                </div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="log-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="log-content">
+                                    <div class="log-message">Password changed successfully</div>
+                                    <div class="log-time">3 days ago</div>
+                                </div>
+                            </div>
+                            <div class="log-entry">
+                                <div class="log-icon">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <div class="log-content">
+                                    <div class="log-message">Security settings updated</div>
+                                    <div class="log-time">1 week ago</div>
+                                </div>
+                            </div>
+                            <div class="log-entry warning">
+                                <div class="log-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="log-content">
+                                    <div class="log-message">Multiple failed login attempts from 203.0.113.42</div>
+                                    <div class="log-time">2 weeks ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i> Export Log
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-trash"></i> Clear Log
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
