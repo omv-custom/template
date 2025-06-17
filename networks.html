@@ -10,8 +10,13 @@
 </head>
 <body>
     <div class="admin-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">System<span>Dash</span></h1>
             </div>
@@ -62,13 +67,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="#">
                             <i class="fab fa-docker"></i>
                             <span>Containers</span>
                             <i class="fas fa-chevron-right arrow"></i>
                         </a>
-                        <ul class="submenu active">
+                        <ul class="submenu">
                             <li class="submenu-item">
                                 <a href="#">
                                     <i class="fas fa-play"></i>
@@ -176,25 +181,8 @@
                     <h3>Network Management</h3>
                 </div>
                 <div class="top-bar-right">
-                   <div class="language-switcher">
-                        <button class="language-btn">
-                            <img src="https://flagcdn.com/w20/gb.png" class="language-flag">
-                            <span>English</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="language-dropdown">
-                            <div class="language-option">
-                                <img src="https://flagcdn.com/w20/gb.png" class="language-flag">
-                                <span>English</span>
-                            </div>
-                            <div class="language-option">
-                                <img src="https://flagcdn.com/w20/pl.png" class="language-flag">
-                                <span>Polski</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                     <div class="messages-menu">
+                    <!-- Messages Dropdown -->
+                    <div class="messages-menu">
                         <button class="messages-btn">
                             <i class="fas fa-envelope"></i>
                             <span class="messages-count">3</span>
@@ -232,7 +220,25 @@
                             </div>
                         </div>
                     </div>
-                 
+
+                    <div class="language-switcher">
+                        <button class="language-btn">
+                            <img src="https://flagcdn.com/w20/gb.png" class="language-flag">
+                            <span>English</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="language-dropdown">
+                            <div class="language-option">
+                                <img src="https://flagcdn.com/w20/gb.png" class="language-flag">
+                                <span>English</span>
+                            </div>
+                            <div class="language-option">
+                                <img src="https://flagcdn.com/w20/pl.png" class="language-flag">
+                                <span>Polski</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="theme-switcher">
                         <i class="fas fa-sun"></i>
                         <label class="switch">
@@ -514,22 +520,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Toggle sidebar on mobile
-            $('.toggle-sidebar').click(function() {
-                $('.sidebar').toggleClass('collapsed');
-                $('.main-content').toggleClass('expanded');
+            // Mobile menu toggle
+            $('#mobile-menu-toggle').click(function() {
+                $('#sidebar').toggleClass('active');
             });
 
-            // Toggle submenu
-            $('.menu-item > a').click(function(e) {
+            // Toggle submenu - improved version
+            $('.menu-item > a').on('click', function(e) {
                 if ($(this).siblings('.submenu').length) {
                     e.preventDefault();
-                    // Zamknij wszystkie inne submenu
-                    $('.menu-item').not($(this).parent()).removeClass('open');
+                    var parent = $(this).parent();
+                    
+                    // Close all other submenus
+                    $('.menu-item').not(parent).removeClass('open');
                     $('.submenu').not($(this).siblings('.submenu')).slideUp(200);
                     
-                    // Toggle obecnego submenu
-                    $(this).parent().toggleClass('open');
+                    // Toggle current submenu
+                    parent.toggleClass('open');
                     $(this).siblings('.submenu').slideToggle(200);
                 }
             });
@@ -550,18 +557,18 @@
                 $('#theme-toggle').prop('checked', true).trigger('change');
             }
             
-            // Automatyczne ukrywanie menu na małych ekranach
+            // Automatically handle sidebar on different screen sizes
             function handleResize() {
                 if ($(window).width() <= 992) {
-                    $('.sidebar').addClass('collapsed');
+                    $('.sidebar').removeClass('collapsed').addClass('active');
                     $('.main-content').addClass('expanded');
                 } else {
-                    $('.sidebar').removeClass('collapsed');
+                    $('.sidebar').removeClass('active').removeClass('collapsed');
                     $('.main-content').removeClass('expanded');
                 }
             }
 
-            // Wywołaj przy ładowaniu i zmianie rozmiaru
+            // Call on load and resize
             $(window).on('load resize', handleResize);
 
             // Create network button
