@@ -563,23 +563,24 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-       $(document).ready(function() {
-            // Toggle sidebar on mobile
-            $('.toggle-sidebar').click(function() {
-                $('.sidebar').toggleClass('collapsed');
-                $('.main-content').toggleClass('expanded');
+        $(document).ready(function() {
+            // Mobile menu toggle
+            $('#mobile-menu-toggle').click(function() {
+                $('#sidebar').toggleClass('active');
             });
 
-            // Toggle submenu
-            $('.menu-item > a').click(function(e) {
+            // Toggle submenu - improved version
+            $('.menu-item > a').on('click', function(e) {
                 if ($(this).siblings('.submenu').length) {
                     e.preventDefault();
-                    // Zamknij wszystkie inne submenu
-                    $('.menu-item').not($(this).parent()).removeClass('open');
+                    var parent = $(this).parent();
+                    
+                    // Close all other submenus
+                    $('.menu-item').not(parent).removeClass('open');
                     $('.submenu').not($(this).siblings('.submenu')).slideUp(200);
                     
-                    // Toggle obecnego submenu
-                    $(this).parent().toggleClass('open');
+                    // Toggle current submenu
+                    parent.toggleClass('open');
                     $(this).siblings('.submenu').slideToggle(200);
                 }
             });
