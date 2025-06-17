@@ -558,6 +558,209 @@
             margin: 0;
             color: var(--text-color);
         }
+        
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+
+        .card-body {Add commentMore actions
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        /* Disk Usage Styles */
+        .disk-list {
+            margin-top: 15px;
+        }
+
+        .disk-item {
+            margin-bottom: 15px;
+        }
+
+        .disk-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .disk-name {
+            font-weight: 500;
+        }
+
+        .disk-size {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Sensors Styles */
+        .sensors-list {
+            margin-top: 15px;
+        }
+
+        .sensor-group {
+            margin-bottom: 15px;
+        }
+
+        .sensor-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .sensor-adapter {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .sensor-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .sensor-value {
+            background-color: rgba(87, 184, 70, 0.1);
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Updates Styles */
+        .updates-container {
+            margin-top: 15px;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 5px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .updates-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .updates-message {
+            font-size: 1.1rem;
+        }
+
+        /* Services List Styles */
+        .services-list {
+            margin-top: 15px;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .service-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-status {
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .status-running {
+            background-color: rgba(87, 184, 70, 0.1);
+            color: var(--primary-color);
+        }
+
+        .status-stopped {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: #d63031;
+        }
+
+        /* Containers Table Styles */
+        .containers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .containers-table th, 
+        .containers-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .containers-table th {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .container-status {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-up {
+            background-color: var(--primary-color);
+        }
+
+        .status-down {
+            background-color: #d63031;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            color: var(--primary-color);
+        }
 
         /* Table Styles */
         .networks-table {
