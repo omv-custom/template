@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Login V1</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./index_files/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./index_files/util.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/main.css">
+<!--===============================================================================================-->
+	<style>
+		/* Dodane style dla paska języków */
+		.language-container {
+			width: 100%;
+			margin-top: 20px;
+			padding-top: 20px;
+			border-top: 1px solid #f0f0f0;
+		}
+
+		.language-label {
+			font-size: 13px;
+			color: #666;
+			margin-right: 15px;
+			font-family: Poppins-Regular;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.language-options {
+			display: inline-flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			vertical-align: middle;
+		}
+
+		.language-option {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			padding: 4px 8px;
+			border-radius: 12px;
+			transition: all 0.2s;
+		}
+
+		.language-option:hover {
+			background: #f5f5f5;
+		}
+
+		.language-option.active {
+			background: #eef2ff;
+		}
+
+		.language-flag {
+			width: 18px;
+			height: 12px;
+			border-radius: 2px;
+			margin-right: 6px;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.language-name {
+			font-size: 12px;
+			color: #333;
+			font-family: Poppins-Regular;
+		}
+
+		/* Flagi jako tła */
+		.flag-en { background-image: url('https://flagcdn.com/w20/gb.png'); }
+		.flag-fr { background-image: url('https://flagcdn.com/w20/fr.png'); }
+		.flag-es { background-image: url('https://flagcdn.com/w20/es.png'); }
+		.flag-de { background-image: url('https://flagcdn.com/w20/de.png'); }
+		.flag-pl { background-image: url('https://flagcdn.com/w20/pl.png'); }
+		.flag-ar { background-image: url('https://flagcdn.com/w20/sa.png'); }
+
+		/* Dostosowanie kontenera formularza */
+		.wrap-login100 {
+			padding-bottom: 30px;
+		}
+	</style>
+<meta name="robots" content="noindex, follow"></head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt="" style="will-change: transform; transform: perspective(300px) rotateX(0deg) rotateY(0deg);">
+					<img src="./index_files/img-01.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Member Login
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="https://colorlib.com/etc/lf/Login_v1/index.html#">
+							Username / Password?
+						</a>
+					</div>
+
+				</form>
+				
+					<div class="language-container text-center">
+						<span class="language-label">Language:</span>
+						<div class="language-options">
+							<div class="language-option active" data-lang="en">
+								<div class="language-flag flag-en"></div>
+								<span class="language-name">English</span>
+							</div>
+							<div class="language-option" data-lang="fr">
+								<div class="language-flag flag-fr"></div>
+								<span class="language-name">Français</span>
+							</div>
+							<div class="language-option" data-lang="es">
+								<div class="language-flag flag-es"></div>
+								<span class="language-name">Español</span>
+							</div>
+							<div class="language-option" data-lang="de">
+								<div class="language-flag flag-de"></div>
+								<span class="language-name">Deutsch</span>
+							</div>
+							<div class="language-option" data-lang="pl">
+								<div class="language-flag flag-pl"></div>
+								<span class="language-name">Polski</span>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="./index_files/jquery-3.2.1.min.js"></script>
+	<script src="./index_files/tilt.jquery.min.js"></script>
+	<script>
+
+
+		// Obsługa zmiany języka
+		$('.language-option').click(function() {
+			$('.language-option').removeClass('active');
+			$(this).addClass('active');
+			
+			const lang = $(this).data('lang');
+			console.log('Selected language:', lang);
+			// Tutaj można dodać rzeczywistą zmianę języka
+		});
+	</script>
+</body></html>
