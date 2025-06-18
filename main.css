@@ -1266,6 +1266,84 @@
     color: var(--text-light);
 }
 
+/* Add these styles to your main.css file */
+/* Form Control Styles */
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(87, 184, 70, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Checkbox Styles */
+.form-group input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+}
+
+.form-group input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+}
+
+/* Select Dropdown Styles */
+.form-control.select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+/* Text Muted */
+.text-muted {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Form Validation Styles */
+.form-control.invalid {
+    border-color: #d63031;
+}
+
+.form-control.invalid:focus {
+    box-shadow: 0 0 0 2px rgba(214, 48, 49, 0.2);
+}
+
+.invalid-feedback {
+    color: #d63031;
+    font-size: 0.8rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    display: block;
+}
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .sidebar {

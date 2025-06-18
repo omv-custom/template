@@ -136,44 +136,52 @@
         </div>
     </div>
 
-    <!-- Form Dialog -->
-    <div class="dialog-overlay" id="form-dialog">
-        <div class="dialog">
-            <div class="dialog-header">
-                <h3 class="dialog-title">Create New Container</h3>
-                <button class="dialog-close">&times;</button>
-            </div>
-            <div class="dialog-body">
-                <div class="form-group">
-                    <label for="container-name">Container Name</label>
-                    <input type="text" id="container-name" class="form-control" placeholder="e.g. web-server">
-                </div>
-                <div class="form-group">
-                    <label for="container-image">Image</label>
-                    <select id="container-image" class="form-control">
-                        <option value="">Select an image</option>
-                        <option value="nginx">nginx:latest</option>
-                        <option value="mysql">mysql:8.0</option>
-                        <option value="redis">redis:alpine</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="container-ports">Port Mapping</label>
-                    <input type="text" id="container-ports" class="form-control" placeholder="e.g. 80:80">
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="auto-start">
-                        Start container after creation
-                    </label>
-                </div>
-            </div>
-            <div class="dialog-footer">
-                <button class="dialog-btn dialog-btn-secondary" id="form-cancel-btn">Cancel</button>
-                <button class="dialog-btn dialog-btn-primary" id="form-submit-btn">Create</button>
-            </div>
-        </div>
-    </div>
+	<!-- Form Dialog -->
+	<div class="dialog-overlay" id="form-dialog">
+	    <div class="dialog">
+		<div class="dialog-header">
+		    <h3 class="dialog-title">Create New Container</h3>
+		    <button class="dialog-close">&times;</button>
+		</div>
+		<div class="dialog-body">
+		    <div class="form-group">
+		        <label for="container-name">Container Name</label>
+		        <input type="text" id="container-name" class="form-control" placeholder="e.g. web-server">
+		        <div class="invalid-feedback" id="name-error">Please provide a container name</div>
+		    </div>
+		    <div class="form-group">
+		        <label for="container-image">Image</label>
+		        <select id="container-image" class="form-control select">
+		            <option value="">Select an image</option>
+		            <option value="nginx">nginx:latest</option>
+		            <option value="mysql">mysql:8.0</option>
+		            <option value="redis">redis:alpine</option>
+		        </select>
+		        <div class="invalid-feedback" id="image-error">Please select an image</div>
+		    </div>
+		    <div class="form-group">
+		        <label for="container-ports">Port Mapping (optional)</label>
+		        <input type="text" id="container-ports" class="form-control" placeholder="e.g. 80:80 or 8080:80">
+		        <p class="text-muted">Leave blank if no port mapping is needed</p>
+		    </div>
+		    <div class="form-group">
+		        <label for="auto-start">
+		            <input type="checkbox" id="auto-start" checked>
+		            Start container after creation
+		        </label>
+		    </div>
+		    <div class="form-group">
+		        <label for="container-env">Environment Variables (optional)</label>
+		        <textarea id="container-env" class="form-control" rows="3" placeholder="KEY=VALUE&#10;KEY2=VALUE2"></textarea>
+		        <p class="text-muted">Enter each variable on a new line</p>
+		    </div>
+		</div>
+		<div class="dialog-footer">
+		    <button class="dialog-btn dialog-btn-secondary" id="form-cancel-btn">Cancel</button>
+		    <button class="dialog-btn dialog-btn-primary" id="form-submit-btn">Create Container</button>
+		</div>
+	    </div>
+	</div>
 
     <!-- Custom Dialog -->
     <div class="dialog-overlay" id="custom-dialog">
@@ -256,17 +264,57 @@
                 $('#confirm-dialog').removeClass('active');
             });
             
-            // Form submit button
-            $('#form-submit-btn').click(function() {
-                const name = $('#container-name').val();
-                const image = $('#container-image').val();
-                if (name && image) {
-                    alert(`Container ${name} with image ${image} will be created!`);
-                    $('#form-dialog').removeClass('active');
-                } else {
-                    alert('Please fill all required fields!');
-                }
-            });
+		// Form submit button
+		$('#form-submit-btn').click(function() {
+		    let isValid = true;
+		    const name = $('#container-name').val();
+		    const image = $('#container-image').val();
+		    
+		    // Reset validation
+		    $('.form-control').removeClass('invalid');
+		    $('.invalid-feedback').hide();
+		    
+		    // Validate name
+		    if (!name) {
+			$('#container-name').addClass('invalid');
+			$('#name-error').show();
+			isValid = false;
+		    }
+		    
+		    // Validate image
+		    if (!image) {
+			$('#container-image').addClass('invalid');
+			$('#image-error').show();
+			isValid = false;
+		    }
+		    
+		    if (isValid) {
+			const ports = $('#container-ports').val();
+			const autoStart = $('#auto-start').is(':checked');
+			const envVars = $('#container-env').val();
+			
+			// Here you would typically make an API call
+			console.log('Creating container:', {
+			    name,
+			    image,
+			    ports,
+			    autoStart,
+			    envVars
+			});
+			
+			// Show success message
+			showAlertDialog('Success', `Container ${name} will be created with image ${image}`, function() {
+			    $('#form-dialog').removeClass('active');
+			    
+			    // Reset form
+			    $('#container-name').val('');
+			    $('#container-image').val('');
+			    $('#container-ports').val('');
+			    $('#auto-start').prop('checked', true);
+			    $('#container-env').val('');
+			});
+		    }
+		});
             
             // Close dialog when clicking outside
             $('.dialog-overlay').click(function(e) {
