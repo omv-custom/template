@@ -82,3 +82,73 @@
                 $('.dashboard-card:nth-child(2) .card-footer span:last').text(freeRam + ' GB free');
             }, 3000);
         });
+        
+ window.Dialog = {
+    alert: function(title, message, callback) {
+        const dialog = $('<div class="dialog-overlay active">' +
+            '<div class="dialog">' +
+            '<div class="dialog-header">' +
+            `<h3 class="dialog-title">${title}</h3>` +
+            '<button class="dialog-close">&times;</button>' +
+            '</div>' +
+            '<div class="dialog-body">' +
+            `<p>${message}</p>` +
+            '</div>' +
+            '<div class="dialog-footer">' +
+            '<button class="dialog-btn dialog-btn-primary dialog-ok-btn">OK</button>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+        
+        $('body').append(dialog);
+        
+        dialog.find('.dialog-close, .dialog-ok-btn').click(function() {
+            dialog.remove();
+            if (callback) callback();
+        });
+        
+        dialog.click(function(e) {
+            if ($(e.target).hasClass('dialog-overlay')) {
+                dialog.remove();
+                if (callback) callback();
+            }
+        });
+    },
+
+    confirm: function(title, message, confirmCallback, cancelCallback) {
+        const dialog = $('<div class="dialog-overlay active">' +
+            '<div class="dialog">' +
+            '<div class="dialog-header">' +
+            `<h3 class="dialog-title">${title}</h3>` +
+            '<button class="dialog-close">&times;</button>' +
+            '</div>' +
+            '<div class="dialog-body">' +
+            `<p>${message}</p>` +
+            '</div>' +
+            '<div class="dialog-footer">' +
+            '<button class="dialog-btn dialog-btn-secondary dialog-cancel-btn">Cancel</button>' +
+            '<button class="dialog-btn dialog-btn-primary dialog-confirm-btn">Confirm</button>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+        
+        $('body').append(dialog);
+        
+        dialog.find('.dialog-close, .dialog-cancel-btn').click(function() {
+            dialog.remove();
+            if (cancelCallback) cancelCallback();
+        });
+        
+        dialog.find('.dialog-confirm-btn').click(function() {
+            dialog.remove();
+            if (confirmCallback) confirmCallback();
+        });
+        
+        dialog.click(function(e) {
+            if ($(e.target).hasClass('dialog-overlay')) {
+                dialog.remove();
+                if (cancelCallback) cancelCallback();
+            }
+        });
+    }
+};

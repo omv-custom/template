@@ -356,57 +356,56 @@
                 $('#confirm-dialog').removeClass('active');
             });
             
-		// Form submit button
-		$('#form-submit-btn').click(function() {
-		    let isValid = true;
-		    const name = $('#container-name').val();
-		    const image = $('#container-image').val();
-		    
-		    // Reset validation
-		    $('.form-control').removeClass('invalid');
-		    $('.invalid-feedback').hide();
-		    
-		    // Validate name
-		    if (!name) {
-			$('#container-name').addClass('invalid');
-			$('#name-error').show();
-			isValid = false;
-		    }
-		    
-		    // Validate image
-		    if (!image) {
-			$('#container-image').addClass('invalid');
-			$('#image-error').show();
-			isValid = false;
-		    }
-		    
-		    if (isValid) {
-			const ports = $('#container-ports').val();
-			const autoStart = $('#auto-start').is(':checked');
-			const envVars = $('#container-env').val();
-			
-			// Here you would typically make an API call
-			console.log('Creating container:', {
-			    name,
-			    image,
-			    ports,
-			    autoStart,
-			    envVars
-			});
-			
-			// Show success message
-			showAlertDialog('Success', `Container ${name} will be created with image ${image}`, function() {
-			    $('#form-dialog').removeClass('active');
-			    
-			    // Reset form
-			    $('#container-name').val('');
-			    $('#container-image').val('');
-			    $('#container-ports').val('');
-			    $('#auto-start').prop('checked', true);
-			    $('#container-env').val('');
-			});
-		    }
-		});
+$('#form-submit-btn').click(function() {
+    let isValid = true;
+    const name = $('#container-name').val();
+    const image = $('#container-image').val();
+    
+    // Reset validation
+    $('.form-control').removeClass('invalid');
+    $('.invalid-feedback').hide();
+    
+    // Validate name
+    if (!name) {
+        $('#container-name').addClass('invalid');
+        $('#name-error').show();
+        isValid = false;
+    }
+    
+    // Validate image
+    if (!image) {
+        $('#container-image').addClass('invalid');
+        $('#image-error').show();
+        isValid = false;
+    }
+    
+    if (isValid) {
+        const ports = $('#container-ports').val();
+        const autoStart = $('#auto-start').is(':checked');
+        const envVars = $('#container-env').val();
+        
+        // Here you would typically make an API call
+        console.log('Creating container:', {
+            name,
+            image,
+            ports,
+            autoStart,
+            envVars
+        });
+        
+        // Show success message using the Dialog object
+        Dialog.alert('Success', `Container ${name} will be created with image ${image}`, function() {
+            $('#form-dialog').removeClass('active');
+            
+            // Reset form
+            $('#container-name').val('');
+            $('#container-image').val('');
+            $('#container-ports').val('');
+            $('#auto-start').prop('checked', true);
+            $('#container-env').val('');
+        });
+    }
+});
             
             // Close dialog when clicking outside
             $('.dialog-overlay').click(function(e) {
