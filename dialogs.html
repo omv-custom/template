@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Examples - System Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Sidebar (same as index.html) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">System<span>Dash</span></h1>
+            </div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="menu-item">
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- Other menu items same as index.html -->
+                    <li class="menu-item active">
+                        <a href="dialogs.html">
+                            <i class="fas fa-window-maximize"></i>
+                            <span>Dialogs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h3>Dialog Examples</h3>
+                </div>
+                <div class="top-bar-right">
+                    <!-- Same as index.html -->
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="dialog-examples">
+                    <!-- Alert Dialog Example -->
+                    <div class="dialog-example-card">
+                        <h3 class="dialog-example-title">Alert Dialog</h3>
+                        <p class="dialog-example-desc">A simple alert dialog with a message and OK button.</p>
+                        <button class="btn-primary" id="alert-dialog-btn">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Show Alert
+                        </button>
+                    </div>
+
+                    <!-- Confirm Dialog Example -->
+                    <div class="dialog-example-card">
+                        <h3 class="dialog-example-title">Confirm Dialog</h3>
+                        <p class="dialog-example-desc">A confirmation dialog with OK and Cancel buttons.</p>
+                        <button class="btn-primary" id="confirm-dialog-btn">
+                            <i class="fas fa-question-circle"></i>
+                            Show Confirm
+                        </button>
+                    </div>
+
+                    <!-- Form Dialog Example -->
+                    <div class="dialog-example-card">
+                        <h3 class="dialog-example-title">Form Dialog</h3>
+                        <p class="dialog-example-desc">A dialog containing a form with multiple fields.</p>
+                        <button class="btn-primary" id="form-dialog-btn">
+                            <i class="fas fa-edit"></i>
+                            Show Form
+                        </button>
+                    </div>
+
+                    <!-- Custom Dialog Example -->
+                    <div class="dialog-example-card">
+                        <h3 class="dialog-example-title">Custom Dialog</h3>
+                        <p class="dialog-example-desc">A dialog with custom content and styling.</p>
+                        <button class="btn-primary" id="custom-dialog-btn">
+                            <i class="fas fa-magic"></i>
+                            Show Custom
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dialog Templates -->
+    <!-- Alert Dialog -->
+    <div class="dialog-overlay" id="alert-dialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 class="dialog-title">System Alert</h3>
+                <button class="dialog-close">&times;</button>
+            </div>
+            <div class="dialog-body">
+                <p>This is an important system message. Please review the information carefully.</p>
+                <p>The system will perform maintenance tonight at 2:00 AM.</p>
+            </div>
+            <div class="dialog-footer">
+                <button class="dialog-btn dialog-btn-primary" id="alert-ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div class="dialog-overlay" id="confirm-dialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 class="dialog-title">Confirm Action</h3>
+                <button class="dialog-close">&times;</button>
+            </div>
+            <div class="dialog-body">
+                <p>Are you sure you want to delete this container?</p>
+                <p class="text-muted">This action cannot be undone.</p>
+            </div>
+            <div class="dialog-footer">
+                <button class="dialog-btn dialog-btn-secondary" id="confirm-cancel-btn">Cancel</button>
+                <button class="dialog-btn dialog-btn-primary" id="confirm-ok-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Dialog -->
+    <div class="dialog-overlay" id="form-dialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 class="dialog-title">Create New Container</h3>
+                <button class="dialog-close">&times;</button>
+            </div>
+            <div class="dialog-body">
+                <div class="form-group">
+                    <label for="container-name">Container Name</label>
+                    <input type="text" id="container-name" class="form-control" placeholder="e.g. web-server">
+                </div>
+                <div class="form-group">
+                    <label for="container-image">Image</label>
+                    <select id="container-image" class="form-control">
+                        <option value="">Select an image</option>
+                        <option value="nginx">nginx:latest</option>
+                        <option value="mysql">mysql:8.0</option>
+                        <option value="redis">redis:alpine</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="container-ports">Port Mapping</label>
+                    <input type="text" id="container-ports" class="form-control" placeholder="e.g. 80:80">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="auto-start">
+                        Start container after creation
+                    </label>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="dialog-btn dialog-btn-secondary" id="form-cancel-btn">Cancel</button>
+                <button class="dialog-btn dialog-btn-primary" id="form-submit-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Dialog -->
+    <div class="dialog-overlay" id="custom-dialog">
+        <div class="dialog" style="max-width: 600px;">
+            <div class="dialog-header" style="background-color: var(--primary-color); color: white;">
+                <h3 class="dialog-title"><i class="fas fa-star"></i> Premium Feature</h3>
+                <button class="dialog-close" style="color: white;">&times;</button>
+            </div>
+            <div class="dialog-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <i class="fas fa-crown" style="font-size: 3rem; color: gold; margin-bottom: 15px;"></i>
+                    <h3>Upgrade to Premium</h3>
+                    <p>This feature is only available to premium users. Upgrade now to unlock:</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>Advanced container management</li>
+                        <li>Priority support</li>
+                        <li>Custom themes</li>
+                        <li>And much more!</li>
+                    </ul>
+                </div>
+                <div class="pricing-options" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0;">
+                    <div class="pricing-option" style="padding: 15px; border: 1px solid var(--border-color); border-radius: 5px; text-align: center;">
+                        <h4>Monthly</h4>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">$9.99</div>
+                        <button class="dialog-btn dialog-btn-secondary" style="width: 100%; margin-top: 10px;">Select</button>
+                    </div>
+                    <div class="pricing-option" style="padding: 15px; border: 1px solid var(--primary-color); border-radius: 5px; text-align: center; background-color: rgba(87, 184, 70, 0.1);">
+                        <div style="position: absolute; top: -10px; right: 10px; background-color: var(--primary-color); color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Best Value</div>
+                        <h4>Yearly</h4>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">$99.99</div>
+                        <small style="color: var(--text-light);">($8.33/month)</small>
+                        <button class="dialog-btn dialog-btn-primary" style="width: 100%; margin-top: 10px;">Select</button>
+                    </div>
+                    <div class="pricing-option" style="padding: 15px; border: 1px solid var(--border-color); border-radius: 5px; text-align: center;">
+                        <h4>Lifetime</h4>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">$299.99</div>
+                        <button class="dialog-btn dialog-btn-secondary" style="width: 100%; margin-top: 10px;">Select</button>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="dialog-btn dialog-btn-secondary" id="custom-cancel-btn">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // Dialog functionality
+        $(document).ready(function() {
+            // Show alert dialog
+            $('#alert-dialog-btn').click(function() {
+                $('#alert-dialog').addClass('active');
+            });
+            
+            // Show confirm dialog
+            $('#confirm-dialog-btn').click(function() {
+                $('#confirm-dialog').addClass('active');
+            });
+            
+            // Show form dialog
+            $('#form-dialog-btn').click(function() {
+                $('#form-dialog').addClass('active');
+            });
+            
+            // Show custom dialog
+            $('#custom-dialog-btn').click(function() {
+                $('#custom-dialog').addClass('active');
+            });
+            
+            // Close dialogs when clicking X or cancel buttons
+            $('.dialog-close, #alert-ok-btn, #confirm-cancel-btn, #form-cancel-btn, #custom-cancel-btn').click(function() {
+                $(this).closest('.dialog-overlay').removeClass('active');
+            });
+            
+            // Confirm OK button
+            $('#confirm-ok-btn').click(function() {
+                alert('Container deleted!');
+                $('#confirm-dialog').removeClass('active');
+            });
+            
+            // Form submit button
+            $('#form-submit-btn').click(function() {
+                const name = $('#container-name').val();
+                const image = $('#container-image').val();
+                if (name && image) {
+                    alert(`Container ${name} with image ${image} will be created!`);
+                    $('#form-dialog').removeClass('active');
+                } else {
+                    alert('Please fill all required fields!');
+                }
+            });
+            
+            // Close dialog when clicking outside
+            $('.dialog-overlay').click(function(e) {
+                if ($(e.target).hasClass('dialog-overlay')) {
+                    $(this).removeClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
