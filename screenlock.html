@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Lock - System Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="screenlock-container">
+        <div class="screenlock-box">
+            <div class="screenlock-header">
+                <div class="user-avatar">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                </div>
+                <h2>Admin</h2>
+                <p>Session locked</p>
+            </div>
+            
+            <form id="unlock-form" class="screenlock-form">
+                <div class="form-group">
+                    <div class="password-input">
+                        <input type="password" id="unlock-password" placeholder="Enter your password" required>
+                        <button type="button" id="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback" id="password-error">Incorrect password</div>
+                </div>
+                
+                <button type="submit" class="btn-primary unlock-btn">
+                    <i class="fas fa-unlock"></i> Unlock
+                </button>
+            </form>
+            
+            <div class="screenlock-footer">
+                <p>Forgot password? <a href="#" id="reset-password">Contact system administrator</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Store the correct password (in real app this would be from server)
+            const correctPassword = "admin123";
+            
+            // Toggle password visibility
+            $('#toggle-password').click(function() {
+                const passwordField = $('#unlock-password');
+                const icon = $(this).find('i');
+                
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+            
+            // Handle unlock form submission
+            $('#unlock-form').submit(function(e) {
+                e.preventDefault();
+                
+                const enteredPassword = $('#unlock-password').val();
+                const errorElement = $('#password-error');
+                
+                // Simple validation (in real app this would be a server call)
+                if (enteredPassword === correctPassword) {
+                    errorElement.hide();
+                    // Redirect to dashboard after successful unlock
+                    window.location.href = "index.html";
+                } else {
+                    errorElement.show();
+                    $('#unlock-password').addClass('invalid');
+                    // Shake animation for wrong password
+                    $('.screenlock-box').addClass('shake');
+                    setTimeout(() => {
+                        $('.screenlock-box').removeClass('shake');
+                    }, 500);
+                }
+            });
+            
+            // Reset password link
+            $('#reset-password').click(function(e) {
+                e.preventDefault();
+                alert("Please contact your system administrator to reset your password.");
+            });
+        });
+    </script>
+</body>
+</html>

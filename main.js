@@ -83,6 +83,34 @@
             }, 3000);
         });
         
+// Auto-lock after inactivity
+let inactivityTimer;
+const lockAfter = 300000; // 5 minutes (in milliseconds)
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(lockScreen, lockAfter);
+}
+
+function lockScreen() {
+    // In a real app, you would redirect to the lock screen
+    console.log('Screen locked due to inactivity');
+    // window.location.href = "screenlock.html";
+}
+
+// Set up event listeners for user activity
+['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
+    document.addEventListener(event, resetInactivityTimer);
+});
+
+// Start the timer when page loads
+resetInactivityTimer();
+
+// Manual lock function (can be called from other pages)
+window.lockScreen = function() {
+    window.location.href = "screenlock.html";
+};
+        
  window.Dialog = {
     alert: function(title, message, callback) {
         const dialog = $('<div class="dialog-overlay active">' +
