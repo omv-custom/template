@@ -540,7 +540,64 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
+            position: relative; /* Dodaj to jeśli nie ma */
+            overflow: hidden; /* Dodaj to jeśli nie ma */
         }
+        
+        .card-loading-bar {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    height: 3px;
+	    background-color: rgba(87, 184, 70, 0.2);
+	    overflow: hidden;
+	    display: none;
+	}
+
+	.card-loading-bar::before {
+	    content: '';
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 100%;
+	    width: 50%;
+	    background-color: var(--primary-color);
+	    animation: loadingBar 1.5s infinite ease-in-out;
+	}
+
+	@keyframes loadingBar {
+	    0% { transform: translateX(-100%); }
+	    100% { transform: translateX(200%); }
+	}
+
+	.card-loading-content {
+	    display: none;
+	    text-align: center;
+	    padding: 20px;
+	    color: var(--text-light);
+	}
+
+	.card-loading-content i {
+	    font-size: 1.5rem;
+	    margin-bottom: 10px;
+	    color: var(--primary-color);
+	}
+	
+	@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+	/* Dark theme adjustments */
+	[data-theme="dark"] .card-loading-bar {
+	    background-color: rgba(87, 184, 70, 0.1);
+	}
+
 
         .card-header {
             display: flex;

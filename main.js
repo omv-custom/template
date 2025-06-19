@@ -83,33 +83,33 @@
             }, 3000);
         });
         
-// Auto-lock after inactivity
-let inactivityTimer;
-const lockAfter = 300000; // 5 minutes (in milliseconds)
+	// Auto-lock after inactivity
+	let inactivityTimer;
+	const lockAfter = 300000; // 5 minutes (in milliseconds)
 
-function resetInactivityTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(lockScreen, lockAfter);
-}
+	function resetInactivityTimer() {
+	    clearTimeout(inactivityTimer);
+	    inactivityTimer = setTimeout(lockScreen, lockAfter);
+	}
 
-function lockScreen() {
-    // In a real app, you would redirect to the lock screen
-    console.log('Screen locked due to inactivity');
-    // window.location.href = "screenlock.html";
-}
+	function lockScreen() {
+	    // In a real app, you would redirect to the lock screen
+	    console.log('Screen locked due to inactivity');
+	    // window.location.href = "screenlock.html";
+	}
 
-// Set up event listeners for user activity
-['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
-    document.addEventListener(event, resetInactivityTimer);
-});
+	// Set up event listeners for user activity
+	['mousemove', 'keydown', 'click', 'scroll'].forEach(event => {
+	    document.addEventListener(event, resetInactivityTimer);
+	});
 
-// Start the timer when page loads
-resetInactivityTimer();
+	// Start the timer when page loads
+	resetInactivityTimer();
 
-// Manual lock function (can be called from other pages)
-window.lockScreen = function() {
-    window.location.href = "screenlock.html";
-};
+	// Manual lock function (can be called from other pages)
+	window.lockScreen = function() {
+	    window.location.href = "screenlock.html";
+	};
         
  window.Dialog = {
     alert: function(title, message, callback) {
@@ -180,3 +180,43 @@ window.lockScreen = function() {
         });
     }
 };
+
+
+function showCardLoading(cardElement) {
+    $(cardElement).find('.card-loading-bar, .card-loading-content').show();
+    $(cardElement).find('.card-header, .card-body, .card-footer').hide();
+}
+
+function hideCardLoading(cardElement) {
+    $(cardElement).find('.card-loading-bar, .card-loading-content').hide();
+    $(cardElement).find('.card-header, .card-body, .card-footer').show();
+}
+
+$(document).ready(function() {
+    // Pokaż stan ładowania dla wszystkich kart
+    $('.dashboard-card').each(function() {
+        showCardLoading($(this));
+    });
+    
+    // Symulacja ładowania danych - ukryj loader po 3 sekundach dla wszystkich kart
+    setTimeout(function() {
+        $('.dashboard-card').each(function() {
+            hideCardLoading($(this));
+        });
+    }, 3000);
+    
+    // W rzeczywistej aplikacji użyj osobnych zapytań dla każdej karty:
+    /*
+    // Dla karty CPU
+    fetchCpuData().then(function() {
+        hideCardLoading($('.dashboard-card').eq(0));
+    });
+    
+    // Dla karty RAM
+    fetchRamData().then(function() {
+        hideCardLoading($('.dashboard-card').eq(1));
+    });
+    
+    // ... i tak dalej dla innych kart
+    */
+});
